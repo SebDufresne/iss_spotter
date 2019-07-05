@@ -75,18 +75,15 @@ const fetchISSFlyOverTimes = (coords, callback) => {
 const nextISSTimesForMyLocation = (callback) => {
   fetchMyIP((error, ip) => {
     if (error) {
-      console.log("It didn't work!" , error);
-      return;
+      return callback(error, null);
     }
     fetchCoordsByIP(ip,(error, coords) => {
       if (error) {
-        console.log("It didn't work!" , error);
-        return;
+        return callback(error, null);
       }
       fetchISSFlyOverTimes(coords, (error, flyTimes) => {
         if (error) {
-          console.log("It didn't work!" , error);
-          return;
+          return callback(error, null);
         }
         for (const times of flyTimes) {
 
